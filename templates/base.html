@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+
+        </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.png' %}">
+        {% include 'includes/css.html' %}
+    </head>
+    <body>
+        <main>
+            <div class="container">
+                {% block content %}
+                {% endblock content %}
+            </div>
+        </main>
+        {% include 'includes/js.html' %}
+    </body>
+</html>
