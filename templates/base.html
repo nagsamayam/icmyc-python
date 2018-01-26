@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <title>
-
+            {% block head_title %}ICMYC{% endblock head_title %}
         </title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,6 +11,8 @@
         {% include 'includes/css.html' %}
     </head>
     <body>
+        {% include 'includes/nav_bar.html' %}
+        <br>
         <main>
             <div class="container">
                 {% block content %}

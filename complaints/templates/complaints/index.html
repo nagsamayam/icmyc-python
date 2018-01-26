@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block head_title %} Complaints | {{ block.super }} {% endblock head_title %}
+{% block content %}
+<h1>Complaints</h1>
+<ul>
+{% for complaint in complaints %}
+<li>
+    <a href="{% url 'complaint-detail' complaint.slug %}">
+        {{complaint.title }}
+    </a>
+</li>
+{% endfor %}
+</ul>
+<a href="{% url 'complaint-new' %}">+Add new complaint</a>
+{% endblock %}

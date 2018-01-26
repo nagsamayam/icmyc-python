@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block head_title %}Edit Complaint | {% endblock head_title %}
+{% block content %}
+<form action="" method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<button type="submit" class="btn btn-primary">
+        Update
+    </button>  
+</form>
+{% endblock %}

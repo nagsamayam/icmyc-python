@@ -21,7 +21,7 @@ def emailView(request):
             
             return redirect('success')
             
-    return render(request, 'settings/contact_us.html', {'form': form})
+    return render(request, 'pages/contact_us.html', {'form': form})
 
 
 def successView(request):
