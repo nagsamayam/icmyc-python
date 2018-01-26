@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block head_title %} Add Complaint | {{ block.super }} {% endblock head_title %}
+{% block content %}
+<form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+            {{ field.label_tag }}
+            {{ field }}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">
+            Save
+        </button>        
+    </form>
+{% endblock %}

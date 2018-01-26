@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block head_title %} {{ complaint.title }} | {{ block.super }} {% endblock head_title %}
+{% block content %}
+<div>
+    <p>{{complaint.title }}</p>
+    <p>{{complaint.body }}</p>
+</div>
+<a href="{% url 'complaint-new' %}">+Add new complaint</a>
+<br/>
+<a href="{% url 'complaint-edit' complaint.slug %}">Edit Complaint</a>
+<br/>
+<a href="{% url 'complaint-delete' complaint.slug %}">-Delete Complaint</a>
+{% endblock %}

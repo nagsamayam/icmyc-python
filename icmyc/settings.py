@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pages',
+    'complaints',
 ]
 
 MIDDLEWARE = [
@@ -79,9 +80,15 @@ WSGI_APPLICATION = 'icmyc.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'sqlite': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': str(ROOT_DIR.path('db.sqlite3')),
+    },
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env.str('DB_NAME', 'django_icmyc'),
+        'USER': env.str('DB_USERNAME', 'root'),
+        'PASSWORD': env('DB_PASSWORD'),
     }
 }
 
