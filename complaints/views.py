@@ -3,9 +3,11 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Complaint
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class ComplaintsListView(ListView):
+class ComplaintsListView(LoginRequiredMixin, ListView):
+    login_url = '/accounts/login/'
     model = Complaint
     template_name = 'complaints/index.html'
     context_object_name = 'complaints'
