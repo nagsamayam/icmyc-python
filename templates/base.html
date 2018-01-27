@@ -12,6 +12,18 @@
     </head>
     <body>
         {% include 'includes/nav_bar.html' %}
+        {% if messages%}
+        <div class="alert messages text-center">
+                {% for message in messages %}
+                <b>{{ message }}</b><br/>
+                {% endfor %}            
+        </div>
+        {% endif %}
+        <header>
+            {% if user.is_authenticated %}
+            Welcome {{user.username}}
+            {% endif %}
+        </header>
         <br>
         <main>
             <div class="container">
