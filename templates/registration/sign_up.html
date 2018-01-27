@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block head_title %}Register | {{ block.super }} {% endblock head_title %}
+
+{% block content %}
+<h2>Register</h2>
+<form method="post">
+  {% csrf_token %}
+    {% for field in form %}
+    <div class="form-group">
+        {{ field.errors }}
+        {{ field }}
+        {% if field.help_text %}
+        <small class="form-text text-muted">{{ field.help_text }}</small>
+      {% endif %}
+    </div>
+    {% endfor %}
+  <button type="submit" class="btn btn-primary">
+        Register
+</button>
+</form>
+{% endblock %}

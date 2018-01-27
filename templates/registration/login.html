@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block head_title %}Login | {{ block.super }} {% endblock head_title %}
+{% block content %}
+<h1>Login</h1>
+{% if next != "/" and next is not None %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p>Please login to see this page.</p>
+    {% endif %}
+{% endif %}
+<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="hidden" name="next" value="{{ next }}"/>
+    <button type="submit" class="btn btn-primary">
+            Login
+    </button>
+</form>
+{% endblock content %}
