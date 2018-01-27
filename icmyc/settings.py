@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'pages',
     'complaints',
     'accounts',
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -118,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = env.str('APP_TIME_ZONE', 'UTC')
 
 USE_I18N = True
 
@@ -148,3 +149,11 @@ DEFAULT_FROM_EMAIL = 'Nageswara Rao <nag.samayam@gmail.com>'
 LOGIN_URL = '/login'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
+
+# CELERY specific
+CELERY_BROKER_URL = env.str('CELERY_BROKER_URL', 'redis://localhost:6379')
+CELERY_RESULT_BACKEND = env.str('CELERY_RESULT_BACKEND', 'redis://localhost:6379')
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = env.str('CELERY_TASK_SERIALIZER', 'json')
+CELERY_RESULT_SERIALIZER = env.str('CELERY_RESULT_SERIALIZER', 'json')
+CELERY_TIMEZONE = TIME_ZONE
