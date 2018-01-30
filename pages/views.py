@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 from .forms import ContactForm
 from django.http import HttpResponse
-from django.core.mail import send_mail, BadHeaderError
+from django.core.mail import send_mail, EmailMessage, BadHeaderError
+from django.template import Context
+from django.template.loader import render_to_string
+from .tasks import dispatch_mail
 
 
 def emailView(request):
@@ -26,3 +29,13 @@ def emailView(request):
 
 def successView(request):
     return HttpResponse("Success")
+
+
+def sendTestMail(request):
+    subject = "Complaint Posted"
+    from_email, to_email = "nag.samayam@gmail.com", "nag.samayam@gmail.com"
+    html_content = render_to_string('emails/complaint_posted.html', {'username': "Nageswara Rao"})
+    dispatch_mail.apply_async((to_email, subject, html_content, from_email), countdown=10)
+    dispatch_mail.delay(to_email, subject, html_content, from_email)
+    return redirect('success')
+
