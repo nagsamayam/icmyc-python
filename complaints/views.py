@@ -23,8 +23,7 @@ class ComplaintCreateView(CreateView):
     model = Complaint
     template_name = 'complaints/new.html'
     fields = '__all__'
-
-
+    
 class ComplaintUpdateView(UpdateView):
     model = Complaint
     template_name = 'complaints/edit.html'
